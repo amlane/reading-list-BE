@@ -3,6 +3,7 @@ const graphqlHTTP = require("express-graphql");
 const schema = require("./schema/schema.js");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 
@@ -10,7 +11,7 @@ const app = express();
 app.use(cors());
 
 // connect to Atlas MongoDB
-mongoose.connect("mongodb+srv://admin:Cr41.80ab@gql-reading-list-zxyb8.mongodb.net/test?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
 mongoose.connection.once("open", () => {
     console.log("connected to database")
 });
